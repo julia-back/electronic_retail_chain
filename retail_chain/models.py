@@ -20,11 +20,19 @@ class Contacts(models.Model):
 
 class ChainNode(models.Model):
 
+    NODE_TYPE_CHOICES = {
+        "factory": "Завод",
+        "retail": "Розничная сеть",
+        "entrepreneur": "Индивидуальный предприниматель",
+    }
+
     name = models.CharField(max_length=255)
     contacts = models.ForeignKey(Contacts, unique=True, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product)
     supplier = models.ForeignKey("self", blank=True, null=True, on_delete=models.SET_NULL)
     payment_arrears = models.DecimalField(max_digits=11, decimal_places=2)
+    node_type = models.CharField(choices=NODE_TYPE_CHOICES)
+    node_level = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
