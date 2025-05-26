@@ -10,6 +10,8 @@ class ChainNodeListSerializer(serializers.ModelSerializer):
 
 
 class ChainNodeDetailSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = ChainNode
         fields = "__all__"
+        read_only_fields = ["payment_arrears"]
