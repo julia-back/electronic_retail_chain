@@ -4,6 +4,17 @@ from . import serializers
 from django.contrib.auth.hashers import make_password
 from .permissions import IsCurrentUser
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+
+    permission_classes = [AllowAny]
+
+
+class CustomTokenRefreshView(TokenRefreshView):
+
+    permission_classes = [AllowAny]
 
 
 class UserRetrieveAPIView(generics.RetrieveAPIView):

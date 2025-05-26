@@ -1,5 +1,7 @@
 from pathlib import Path
 import os
+
+import rest_framework_simplejwt.authentication
 from dotenv import load_dotenv
 
 
@@ -23,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework_simplejwt',
 
     'users',
     'products',
@@ -40,6 +43,9 @@ MIDDLEWARE = [
 ]
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
         'retail_chain.permissions.IsStaff',
