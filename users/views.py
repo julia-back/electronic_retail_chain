@@ -2,20 +2,22 @@ from rest_framework import generics
 from .models import User
 from . import serializers
 from django.contrib.auth.hashers import make_password
+from .permissions import IsCurrentUser
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 
 class UserRetrieveAPIView(generics.RetrieveAPIView):
 
     queryset = User.objects.all()
     serializer_class = serializers.UserDetailSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsCurrentUser]
 
 
 class UserCreateAPIView(generics.CreateAPIView):
 
     queryset = User.objects.all()
     serializer_class = serializers.UserDetailSerializer
-    permission_classes = []
+    permission_classes = [AllowAny]
 
     def perform_create(self, serializer):
         serializer.save(
@@ -29,11 +31,11 @@ class UserUpdateAPIView(generics.UpdateAPIView):
 
     queryset = User.objects.all()
     serializer_class = serializers.UserDetailSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsCurrentUser]
 
 
 class UserDestroyAPIView(generics.DestroyAPIView):
 
     queryset = User.objects.all()
     serializer_class = serializers.UserDetailSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsCurrentUser]
