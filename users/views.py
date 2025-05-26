@@ -19,7 +19,7 @@ class UserCreateAPIView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(
-            is_active=False,
+            is_active=True,
             is_staff=False,
             password=make_password(serializer.validated_data.get("password"))
         )

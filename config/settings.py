@@ -40,7 +40,10 @@ MIDDLEWARE = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+        'retail_chain.permissions.IsStaff',
+    ],
 }
 
 ROOT_URLCONF = 'config.urls'
