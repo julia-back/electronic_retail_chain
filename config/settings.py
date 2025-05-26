@@ -1,7 +1,5 @@
 from pathlib import Path
 import os
-
-import rest_framework_simplejwt.authentication
 from dotenv import load_dotenv
 
 
@@ -26,7 +24,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
-    'django-filters',
+    'django_filters',
 
     'users',
     'products',

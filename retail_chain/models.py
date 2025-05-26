@@ -32,11 +32,18 @@ class ChainNode(models.Model):
     supplier = models.ForeignKey("self", blank=True, null=True, on_delete=models.SET_NULL)
     payment_arrears = models.DecimalField(max_digits=11, decimal_places=2)
     node_type = models.CharField(choices=NODE_TYPE_CHOICES)
-    node_level = models.IntegerField()
+    node_level = models.PositiveIntegerField(default=0, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, force_insert=False, force_update=False, using=None, update_fields=None):
+        if self.supplier:
+            self.node_level = self.supplier.node_level + 1
+
+        return super().save(*args, force_insert=force_insert, force_update=force_update,
+                            using=using, update_fields=update_fields)
 
     class Meta:
         verbose_name = "Организация"
