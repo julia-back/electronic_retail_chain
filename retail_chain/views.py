@@ -7,6 +7,7 @@ class ChainNodeListAPIView(generics.ListAPIView):
 
     queryset = ChainNode.objects.all()
     serializer_class = serializers.ChainNodeListSerializer
+    filterset_fields = ["contacts__country"]
 
 
 class ChainNodeRetrieveAPIView(generics.RetrieveAPIView):
