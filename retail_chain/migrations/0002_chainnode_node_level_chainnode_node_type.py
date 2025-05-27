@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='chainnode',
             name='node_type',
-            field=models.CharField(choices=[('factory', 'Завод'), ('retail', 'Розничная сеть'), ('entrepreneur', 'Индивидуальный предприниматель')], default=1),
+            field=models.CharField(choices=[('factory', 'Завод'), ('retail', 'Розничная сеть'),
+                                            ('entrepreneur', 'Индивидуальный предприниматель')], default=1),
             preserve_default=False,
         ),
     ]

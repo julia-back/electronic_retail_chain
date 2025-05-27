@@ -36,8 +36,10 @@ class Migration(migrations.Migration):
                 ('payment_arrears', models.DecimalField(decimal_places=2, max_digits=11)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('products', models.ManyToManyField(to='products.product')),
-                ('supplier', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='retail_chain.chainnode')),
-                ('contacts', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='retail_chain.contacts', unique=True)),
+                ('supplier', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                               to='retail_chain.chainnode')),
+                ('contacts', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='retail_chain.contacts',
+                                               unique=True)),
             ],
             options={
                 'verbose_name': 'Организация',
