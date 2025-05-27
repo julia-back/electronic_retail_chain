@@ -29,7 +29,7 @@ class ChainNode(models.Model):
 
     name = models.CharField(max_length=255)
     contacts = models.ForeignKey(Contacts, unique=True, blank=True, null=True, on_delete=models.SET_NULL)
-    products = models.ManyToManyField(Product, blank=True, null=True)
+    products = models.ManyToManyField(Product, blank=True)
     supplier = models.ForeignKey("self", blank=True, null=True, on_delete=models.SET_NULL)
     payment_arrears = models.DecimalField(max_digits=11, decimal_places=2, blank=True, null=True)
     node_type = models.CharField(choices=NODE_TYPE_CHOICES)
