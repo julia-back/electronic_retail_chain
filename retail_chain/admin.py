@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import ChainNode, Contacts
 
-# Register your models here.
+
+admin.site.register(ChainNode)
+admin.site.register(Contacts)
