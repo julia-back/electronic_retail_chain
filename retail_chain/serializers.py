@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ChainNode
+from .models import ChainNode, Contacts
 from .validators import FactoryNotHaveSupplierValidator, FactoryNotHavePaymentArrearsValidator
 
 
@@ -20,3 +20,10 @@ class ChainNodeDetailSerializer(serializers.ModelSerializer):
             FactoryNotHaveSupplierValidator(),
             FactoryNotHavePaymentArrearsValidator()
         ]
+
+
+class ContactsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Contacts
+        fields = "__all__"

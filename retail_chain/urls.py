@@ -10,4 +10,10 @@ urlpatterns = [
     path("chain_node/new/", views.ChainNodeCreateAPIView.as_view(), name="chain_node_create"),
     path("chain_node/<int:pk>/", views.ChainNodeUpdateAPIView.as_view(), name="chain_node_update"),
     path("chain_node/<int:pk>/", views.ChainNodeDestroyAPIView.as_view(), name="chain_node_destroy"),
+
+    path("contacts_list/", views.ContactsListAPIView.as_view(), name="contacts_list"),
+    path("contacts/<int:pk>/", views.ContactsRetrieveAPIView.as_view(), name="contacts_retrieve"),
+    path("contacts/new/", views.ContactsCreateAPIView.as_view(), name="contacts_create"),
+    path("contacts/<int:pk>/", views.ContactsUpdateAPIView.as_view(), name="contacts_update"),
+    path("contacts/<int:pk>/", views.ContactsDestroyAPIView.as_view(), name="contacts_destroy"),
 ]
