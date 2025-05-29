@@ -19,5 +19,5 @@ class FactoryNotHavePaymentArrearsValidator:
         node_type = fields_dict.get("node_type")
         payment_arrears = fields_dict.get("payment_arrears")
         if node_type == "factory":
-            if payment_arrears != 0:
+            if payment_arrears != 0 and payment_arrears is not None:
                 raise ValidationError("Завод не может иметь долг перед поставщиком.")
