@@ -11,6 +11,6 @@ urlpatterns = [
 
     path("user/<int:pk>/", views.UserRetrieveAPIView.as_view(), name="user_retrieve"),
     path("user/new/", views.UserCreateAPIView.as_view(), name="user_create"),
-    path("user/<int:pk>/", views.UserUpdateAPIView.as_view(), name="user_update"),
-    path("user/<int:pk>/", views.UserDestroyAPIView.as_view(), name="user_destroy"),
+    path("user/<int:pk>/update/", views.UserUpdateAPIView.as_view(), name="user_update"),
+    path("user/<int:pk>/delete/", views.UserDestroyAPIView.as_view(), name="user_destroy"),
 ]

@@ -27,7 +27,7 @@ class UserRetrieveAPIView(generics.RetrieveAPIView):
 class UserCreateAPIView(generics.CreateAPIView):
 
     queryset = User.objects.all()
-    serializer_class = serializers.UserDetailSerializer
+    serializer_class = serializers.UserCreateSerializer
     permission_classes = [AllowAny]
 
     def perform_create(self, serializer):
