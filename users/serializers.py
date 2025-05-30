@@ -3,14 +3,17 @@ from .models import User
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
+    """Класс сериализатора для создания объекта пользователя."""
+
+    password = serializers.CharField(max_length=128, write_only=True)
 
     class Meta:
         model = User
         fields = "__all__"
-        write_only_fields = ["password"]
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
+    """Класс сериализатора для получения деталей, обновления, удаления объекта пользователя."""
 
     class Meta:
         model = User

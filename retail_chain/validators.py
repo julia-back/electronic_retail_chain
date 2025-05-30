@@ -2,6 +2,7 @@ from rest_framework.serializers import ValidationError
 
 
 class FactoryNotHaveSupplierValidator:
+    """Класс валидатора, проверяет, что завод не имеет поставщика."""
 
     def __call__(self, fields_dict):
         fields_dict = dict(fields_dict)
@@ -13,6 +14,7 @@ class FactoryNotHaveSupplierValidator:
 
 
 class FactoryNotHavePaymentArrearsValidator:
+    """Класс валидатора, проверяет, что завод не имеет долг перед поставщиком."""
 
     def __call__(self, fields_dict):
         fields_dict = dict(fields_dict)

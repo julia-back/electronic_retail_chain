@@ -44,10 +44,11 @@ class UserAPITestCase(APITestCase):
 
         response = self.client.post(url, data=user_data)
         self.assertEqual(response.status_code, 201)
-        self.assertEqual(len(response.json()), 13)
+        self.assertEqual(len(response.json()), 12)
         self.assertTrue(response.json().get("id"))
         self.assertEqual(response.json().get("is_active"), True)
         self.assertEqual(response.json().get("is_staff"), False)
+        self.assertEqual(response.json().get("password"), None)
 
     def test_user_update_put(self):
         url = reverse("users:user_update", kwargs={"pk": self.user_current.id})

@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 
 
 class Contacts(models.Model):
+    """Класс модели контактов."""
 
     email = models.EmailField(max_length=255)
     country = models.CharField(max_length=50)
@@ -12,6 +13,8 @@ class Contacts(models.Model):
     house_number = models.CharField(max_length=10)
 
     def __str__(self):
+        """Метод строкового отображения контактов."""
+
         return f"{self.email}, {self.country}"
 
     class Meta:
@@ -20,6 +23,11 @@ class Contacts(models.Model):
 
 
 class ChainNode(models.Model):
+    """
+    Класс модели звена цепи по продаже электроники.
+    Содержит связанные поля контактов, продуктов, поставщика.
+    Уровень звена цепи проставляется автоматически на основе уровня поставщика.
+    """
 
     NODE_TYPE_CHOICES = {
         "factory": "Завод",
@@ -37,9 +45,16 @@ class ChainNode(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
+        """Метод строкового отображения звена цепи."""
+
         return f"{self.name} - {self.node_level}, {self.node_type}"
 
     def save(self, *args, force_insert=False, force_update=False, using=None, update_fields=None):
+        """
+        Переопределенный метод сохранения объекта цвена цепи.
+        Устанавливает уровень звена цепи на основе уровня поставщика.
+        """
+
         if self.supplier:
             self.node_level = self.supplier.node_level + 1
         else:
@@ -49,6 +64,8 @@ class ChainNode(models.Model):
                             using=using, update_fields=update_fields)
 
     def clean(self):
+        """Метод валидации полей звена цепи."""
+
         if self.supplier:
             if self.supplier.id == self.id:
                 raise ValidationError("Организация не может иметь себя в качестве поставщика.")

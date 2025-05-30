@@ -4,6 +4,7 @@ from .validators import FactoryNotHaveSupplierValidator, FactoryNotHavePaymentAr
 
 
 class ChainNodeListSerializer(serializers.ModelSerializer):
+    """Класс сериализатора для списка объектов звена цепи."""
 
     class Meta:
         model = ChainNode
@@ -11,6 +12,7 @@ class ChainNodeListSerializer(serializers.ModelSerializer):
 
 
 class ChainNodeDetailSerializer(serializers.ModelSerializer):
+    """Класс сериализатора для получения деталей, создания, обновления, удаления объекта звена цепи."""
 
     class Meta:
         model = ChainNode
@@ -23,6 +25,7 @@ class ChainNodeDetailSerializer(serializers.ModelSerializer):
 
 
 class ContactsSerializer(serializers.ModelSerializer):
+    """Класс сериализатора объекта контактов."""
 
     class Meta:
         model = Contacts
