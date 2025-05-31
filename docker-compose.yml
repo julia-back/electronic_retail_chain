@@ -3,6 +3,8 @@ services:
     build: ./nginx/
     ports:
       - 80:80
+    volumes:
+      - static_data:/app/static
     depends_on:
       - web
     restart:
@@ -14,11 +16,16 @@ services:
     environment:
       - DB_HOST=db
     volumes:
-      - media_data:/app/media
+      - media_data:/media
       - static_data:/app/static
     expose:
       - 8000
-    command: bash -c "poetry run python manage.py migrate && poetry run gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    command: >
+      bash -c "poetry run python manage.py migrate && 
+      poetry run python manage.py collectstatic --noinput &&
+      chmod -R 755 /app/static &&
+      chown -R www-data:www-data /app/static &&
+      poetry run gunicorn config.wsgi:application --bind 0.0.0.0:8000"
     depends_on:
       - db
     restart:
