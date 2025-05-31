@@ -10,7 +10,7 @@ class ChainNodeAdmin(admin.ModelAdmin):
     """Класс настройки звена цепи в Django Admin"""
 
     list_display = ["name", "contacts", "supplier", "payment_arrears", "node_type", "node_level", "created_at"]
-    list_filter = ["contacts__country"]
+    list_filter = ["contacts__country", "contacts__city"]
     search_fields = ["name"]
     actions = ["clear_payment_arrears"]
 
